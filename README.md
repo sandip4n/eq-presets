@@ -5,6 +5,15 @@ note that all presets are tuned to my personal preferences which are
 also influenced by head-related transfer function. Hence, they are not
 intended to be used as is.
 
+A rough target based on my preferences would be something close the IEF
+2025 target but with less ear gain and a slight mid-bass boost around
+160 Hz. Squiglink preference adjustments for the JM-1 target are listed
+below.
+- Tilt 0dB/octave
+- Bass +8dB
+- Treble -4dB
+- Ear Gain -2.8dB
+
 If none of this make any sense, please consider going through the
 materials linked below.
 
