@@ -7,14 +7,15 @@ intended to be used as is.
 
 A rough target based on my preferences would be something close the IEF
 2025 target but with less ear gain and a slight mid-bass boost around
-160 Hz. Squiglink preference adjustments for the JM-1 target are listed
-below.
+160 Hz and a slight dip around 10 kHz. For measurements taken with the
+B&K 5128, a JM-1 Diffuse Field based target based needs the following
+preference adjustments.
 - Tilt 0dB/octave
 - Bass +8dB
 - Treble -4dB
-- Ear Gain -2.8dB
+- Ear Gain -2.4dB
 
-If none of this make any sense, please consider going through the
+If none of this makes any sense, please consider going through the
 materials linked below.
 
 - https://headphones.com/blogs/features/the-absolute-beginners-guide-to-iems-everything-you-need-to-know-in-less-than-10-minutes
