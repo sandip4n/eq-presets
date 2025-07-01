@@ -15,6 +15,14 @@ preference adjustments.
 - Treble -4dB
 - Ear Gain -2.4dB
 
+The preference adjustments can vary depending on the response of the
+drivers. For example, treble peaks may appear to be more tolerable with
+electrostatic tweeters than balanced armatures. Do note that this is a
+subjective take based on experience with just one pair of IEMs (Monarch
+Mk3) and no measurements to back it up. In such cases, the treble
+adjustment can be increased by up to 1.5 dB. The additional presence
+and air can improve clarity and staging.
+
 If none of this makes any sense, please consider going through the
 materials linked below.
 
