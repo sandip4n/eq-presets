@@ -3,28 +3,28 @@
 A set of presets for my personal In-Ear Monitors (IEMs) collection. Do
 note that all presets are tuned to my personal preferences which are
 also influenced by head-related transfer function. Hence, they are not
-intended to be used as is.
+intended to be used as is by a different person.
 
-A rough target based on my preferences would be something close the IEF
-2025 target but with less ear gain and a slight mid-bass boost around
-160 Hz and a slight dip around 10 kHz. For measurements taken with the
-B&K 5128, a JM-1 Diffuse Field based target based needs the following
-preference adjustments.
+A rough target based on my preferences would be the IEF 2025 target but
+with less ear gain, a mid-bass boost around 150 Hz and an upper treble
+cut around 10 kHz. For measurements taken with the B&K 5128 HATS, the
+JM-1 Diffuse Field target needs the following preference adjustments.
 - Tilt 0dB/octave
 - Bass +8dB
 - Treble -4dB
 - Ear Gain -2.4dB
 
-The preference adjustments can vary depending on the response of the
-drivers. For example, treble peaks may appear to be more tolerable with
-electrostatic tweeters than balanced armatures. Do note that this is a
-subjective take based on experience with just one pair of IEMs (Monarch
-Mk3) and no measurements to back it up. In such cases, the treble
-adjustment can be increased by up to 1.5 dB. The additional presence
-and air can improve clarity and staging.
+In my experience, the preference adjustments can vary depending on the
+response of the drivers. For example, treble peaks can appear to be
+more tolerable with electrostatic tweeters compared to some balanced
+armatures. Note that this is a subjective take based on impression from
+just one pair of IEMs (Monarch Mk3) and no measurements to back it up.
+In such cases, the treble adjustment can be increased by up to 1.5 dB.
+The additional presence and air can improve the sense of clarity and
+stage width.
 
 If none of this makes any sense, please consider going through the
-materials linked below.
+content linked below.
 
 - https://headphones.com/blogs/features/the-absolute-beginners-guide-to-iems-everything-you-need-to-know-in-less-than-10-minutes
 - https://en.wikipedia.org/wiki/Head-related_transfer_function
