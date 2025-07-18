@@ -6,13 +6,14 @@ also influenced by head-related transfer function. Hence, they are not
 intended to be used as is by a different person.
 
 A rough target based on my preferences would be the IEF 2025 target but
-with less ear gain, a mid-bass boost around 150 Hz and an upper treble
-cut around 10 kHz. For measurements taken with the B&K 5128 HATS, the
-JM-1 Diffuse Field target needs the following preference adjustments.
+with slightly less bass, less ear gain, a mid-bass boost around 150 Hz
+and an upper treble cut around 10 kHz. For measurements taken with the
+B&K 5128 HATS, the following preference adjustments are applicable to
+the JM-1 Diffuse Field target.
 - Tilt 0dB/octave
-- Bass +8dB
+- Bass +7.2dB
 - Treble -4dB
-- Ear Gain -2.4dB
+- Ear Gain -2dB
 
 In my experience, the preference adjustments can vary depending on the
 response of the drivers. For example, treble peaks can appear to be
