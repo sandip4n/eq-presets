@@ -7,10 +7,9 @@ presets are not intended to be used as is by another person.
 ## Preferences
 
 The target used here is a variation of the [IEF][3] [2025 target][4] with
-less sub-bass, less ear gain, a mid-bass boost around 150 Hz and an upper
-treble cut around 10 kHz. For measurements taken with the [B&K 5128][5] and
-compared against the [JM-1][6] diffuse field, the following preference
-adjustments are applicable.
+less sub-bass, less ear gain and an upper treble cut around 10 kHz. For
+measurements taken with the [B&K 5128][5] and compared against the [JM-1][6]
+diffuse field, the following preference adjustments are applicable.
 - Tilt 0dB/octave
 - Bass +7.2dB
 - Treble -4dB
