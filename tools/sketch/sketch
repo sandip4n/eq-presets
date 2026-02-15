@@ -1,0 +1,195 @@
+#!/usr/bin/env python3
+# SPDX-License-Identifier: MIT
+
+import argparse
+import os
+import pathlib
+import sys
+
+import parse
+import xmltodict
+
+
+def sketch__parse(file):
+    file = pathlib.Path(file)
+    if not file.exists():
+        return None
+
+    lines = file.read_text(encoding="utf8").splitlines()
+    if not lines:
+        return None
+
+    types = {
+        "PK": "PEAKEQ",
+        "LSC": "LOWSHELF",
+        "HSC": "HIGHSHELF",
+    }
+
+    # note: "@name" and "@id" will be assigned later
+    preset = {
+        "@bind": "0",
+        "@lock": "3",
+        "@preamp": str(parse.parse("Preamp: {:g} dB", lines[0].strip())[0]),
+        "band": [],
+    }
+
+    lines.pop(0)
+    for line in lines:
+        band = parse.parse(
+            "Filter {:d}: ON {:l} Fc {:d} Hz Gain {:g} dB Q {:g}", line.rstrip()
+        )
+        preset["band"].append(
+            {
+                "@type": types[band[1]],
+                "@freq": str(band[2]),
+                "@gain": str(band[3]),
+                "@Q": str(band[4]),
+            }
+        )
+
+    return preset
+
+
+def sketch__db_get(db):
+    file = pathlib.Path(db)
+    if not file.exists():
+        return {
+            "eqp": {"@version": "5", "preset": []},
+        }
+
+    return xmltodict.parse(
+        file.read_text(encoding="utf8"), force_list=("band", "preset")
+    )
+
+
+def sketch__db_put(db, data):
+    file = pathlib.Path(db)
+    file.parent.mkdir(parents=True, exist_ok=True)
+    if not file.exists():
+        file.touch()
+
+    presets = data["eqp"]["preset"]
+    presets.sort(key=lambda preset: preset["@name"])
+    for index, preset in enumerate(presets):
+        preset["@id"] = str(index + 1)
+
+    file.write_text(xmltodict.unparse(data, pretty=True), encoding="utf8")
+
+
+def sketch__db_find(data, name):
+    return next(
+        (preset for preset in data["eqp"]["preset"] if preset["@name"] == name),
+        None,
+    )
+
+
+def sketch__db_add(data, preset):
+    if sketch__db_find(data, preset["@name"]):
+        print("error: preset exists")
+        return
+
+    data["eqp"]["preset"].append(preset)
+
+
+def sketch__db_del(data, preset):
+    name = preset["@name"]
+    data["eqp"]["preset"] = [
+        preset for preset in data["eqp"]["preset"] if preset["@name"] != name
+    ]
+
+
+def sketch__append(db, file, name):
+    preset = sketch__parse(file)
+    if not name:
+        name = os.path.splitext(os.path.basename(file))[0]
+
+    preset["@name"] = name
+    data = sketch__db_get(db)
+    sketch__db_add(data, preset)
+    sketch__db_put(db, data)
+
+
+def sketch__remove(db, name):
+    data = sketch__db_get(db)
+    preset = sketch__db_find(data, name)
+    if not preset:
+        print("error: preset not found")
+        return
+
+    sketch__db_del(data, preset)
+    sketch__db_put(db, data)
+
+
+def sketch__show(db, name):
+    data = sketch__db_get(db)
+    preset = sketch__db_find(data, name)
+    if not preset:
+        print("error: preset not found")
+        return
+
+    types = {
+        "PEAKEQ": "PK",
+        "LOWSHELF": "LSC",
+        "HIGHSHELF": "HSC",
+    }
+
+    print(f"Preamp: {preset["@preamp"]}")
+    for index, band in enumerate(preset["band"]):
+        print(
+            f"Filter {index + 1}: ON {types[band["@type"]]} "
+            f"Fc {band["@freq"]} Hz Gain {band["@gain"]} dB Q {band["@Q"]}"
+        )
+
+
+def sketch__list(db):
+    data = sketch__db_get(db)
+    print("\n".join([preset["@name"] for preset in data["eqp"]["preset"]]))
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser()
+    group = parser.add_mutually_exclusive_group(required=True)
+    group.add_argument(
+        "--append",
+        "-a",
+        nargs=2,
+        metavar=("FILE", "NAME"),
+        help="append preset",
+    )
+    group.add_argument(
+        "--remove",
+        "-r",
+        metavar="NAME",
+        help="remove preset",
+    )
+    group.add_argument(
+        "--show",
+        "-s",
+        metavar="NAME",
+        help="show preset",
+    )
+    group.add_argument(
+        "--list",
+        "-l",
+        action="store_true",
+        help="list presets",
+    )
+    parser.add_argument("db", metavar="FILE", help="path to fc_presets.xml")
+    args = parser.parse_args()
+
+    if args.append:
+        file = args.append[0]
+        name = None if len(args.append) < 2 else args.append[1]
+        sketch__append(args.db, file, name)
+    elif args.remove:
+        sketch__remove(args.db, args.remove)
+    elif args.show:
+        sketch__show(args.db, args.show)
+    elif args.list:
+        sketch__list(args.db)
+
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
