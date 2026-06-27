@@ -1,8 +1,9 @@
 # EQ Presets
 
-A set of parametric equalizer presets for [IEMs][1]. Do note that all presets
-are tuned to my personal preferences. Owing to differences in [HRTF][2], these
-presets are not intended to be used as is by another person.
+A set of parametric equalizer presets for over-ear headphones and
+in-ear monitors. Do note that all presets are tuned to my personal
+preferences. Owing to differences in HRTF, the effect may vary quite a
+bit. Hence, these are not intended to be used as is by another person.
 
 ## References
 
